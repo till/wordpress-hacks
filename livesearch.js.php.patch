@@ -1,0 +1,26 @@
+/**
+ * this is not really a patch, I am too lazy to create one now
+ * @author Till Klampaeckel <klampaeckel@lagged.de>
+ * @desc   Gets rid off a nasty error in IE.
+ */
+
+/**
+ * liveSearchInit
+ *
+ * @desc Replace my function with the original.
+ */
+function liveSearchInit() {
+        var lsearch = document.getElementById('livesearch');
+        if (!lsearch)
+                return;
+
+        if (navigator.userAgent.indexOf("Safari") > 0) {
+                lsearch.addEventListener("keydown",liveSearchKeyPress,false);
+        } else if (navigator.product == "Gecko") {
+                lsearch.addEventListener("keypress",liveSearchKeyPress,false);
+        } else {
+                lsearch.attachEvent('onkeydown',liveSearchKeyPress);
+                isIE = true;
+        }
+
+}
